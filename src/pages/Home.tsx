@@ -6,8 +6,8 @@ import {PokemonResponseResult, PokemonsResponse} from '../types/api.types';
 import PokemonCard from '../components/PokemonCard';
 
 const Home: React.FC = () => {
-  const pokemons = useQuery<PokemonsResponse>('pokemons', () => {
-    return pokemonApi.getPokemons();
+  const pokemons = useQuery<PokemonsResponse>('all-pokemons', () => {
+    return pokemonApi.getAllPokemons();
   });
 
   if (pokemons.isLoading) {
@@ -16,9 +16,7 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      <h1>Home</h1>
-
-      <div className="grid grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 gap-6 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
         {pokemons.data?.results.map((pokemon: PokemonResponseResult) => (
           <PokemonCard key={uuidv4()} name={pokemon.name} />
         ))}

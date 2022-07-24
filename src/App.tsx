@@ -10,6 +10,8 @@ import './index.css';
 // pages
 import Home from './pages/Home';
 import {ReactNode} from 'react';
+import PageNotFound from './pages/PageNotFound';
+import Pokemon from './pages/Pokemon';
 // import Pokemon from './pages/Pokemon';
 
 //
@@ -27,7 +29,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/:pokemon" element={<Pokemon />} /> */}
+          <Route path="/*" element={<PageNotFound />} />
+          <Route path="/:pokemon" element={<Pokemon />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
