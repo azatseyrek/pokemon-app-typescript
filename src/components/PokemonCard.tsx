@@ -1,16 +1,13 @@
 import React from 'react';
-import {useQuery} from 'react-query';
 import {Link} from 'react-router-dom';
-import {pokemonApi} from '../api';
+import useFindPokemon from '../hooks/find-pokemon';
 
 type PokemonCardProps = {
   name: string;
 };
 
 const PokemonCard: React.FC<PokemonCardProps> = ({name}) => {
-  const pokemon = useQuery(['pokemon', name], () =>
-    pokemonApi.getPokemon(name),
-  );
+  const pokemon = useFindPokemon(name);
 
   if (pokemon.isLoading) {
     return <div>Loading...</div>;

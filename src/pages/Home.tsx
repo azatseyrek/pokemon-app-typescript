@@ -1,14 +1,16 @@
 import React from 'react';
-import {useQuery} from 'react-query';
-import {pokemonApi} from '../api';
+
 import {v4 as uuidv4} from 'uuid';
-import {PokemonResponseResult, PokemonsResponse} from '../types/api.types';
+import {PokemonResponseResult} from '../types/api.types';
 import PokemonCard from '../components/PokemonCard';
+import {useApp} from '../state/AppState';
 
 const Home: React.FC = () => {
-  const pokemons = useQuery<PokemonsResponse>('all-pokemons', () => {
-    return pokemonApi.getAllPokemons();
-  });
+  const {pokemons} = useApp();
+
+  // const pokemons = useQuery<PokemonsResponse>('all-pokemons', () => {
+  //   return pokemonApi.getAllPokemons();
+  // });
 
   if (pokemons.isLoading) {
     return <div>Loading...</div>;
