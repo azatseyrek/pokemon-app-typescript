@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import useFindPokemon from '../hooks/find-pokemon';
+import Loader from './Loader';
 
 type PokemonCardProps = {
   name: string;
@@ -10,7 +11,11 @@ const PokemonCard: React.FC<PokemonCardProps> = ({name}) => {
   const pokemon = useFindPokemon(name);
 
   if (pokemon.isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="w-full h-56 bg-gray-50 border border-gray-100 rounded-lg p-4 flex justify-center items-center">
+        <Loader />
+      </div>
+    );
   }
 
   return (
